@@ -1,21 +1,21 @@
-import React from "react";
+import React from 'react';
 
-import { Button } from "./shared/components/atomic/Button";
+import { Button } from './shared/components/atomic/Button';
 
-import { useGetCurrentWeatherByCityQuery } from "./shared/store/reducers/api/currentWeather";
-import { useGetForecastWeatherByCityQuery } from "./shared/store/reducers/api/forecastWeather";
+import { useGetCurrentWeatherByCityQuery } from './shared/store/reducers/api/currentWeather';
+import { useGetForecastWeatherByCityQuery } from './shared/store/reducers/api/forecastWeather';
 
 function App() {
   const {
     data: currentWeather,
     error: errorCurrentWeather,
     isLoading: isLoadingCurrentWeather,
-  } = useGetCurrentWeatherByCityQuery("milan");
+  } = useGetCurrentWeatherByCityQuery('milan');
   const {
     data: forecastWeather,
     error: errorForecastWeather,
     isLoading: isLoadingForecastWeather,
-  } = useGetForecastWeatherByCityQuery("milan");
+  } = useGetForecastWeatherByCityQuery('milan');
 
   return (
     <div>

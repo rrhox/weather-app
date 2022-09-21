@@ -1,10 +1,10 @@
-import { DefaultTheme } from "styled-components";
+import { DefaultTheme } from 'styled-components';
 
 const theme: DefaultTheme = {
-  borderRadius: "15px",
+  borderRadius: '15px',
   colors: {
-    main: "cyan",
-    secondary: "magenta",
+    main: 'cyan',
+    secondary: 'magenta',
   },
 };
 
