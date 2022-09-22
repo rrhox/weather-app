@@ -12,6 +12,5 @@ export const Body = styled.section`
 
   & > div:last-child {
     width: 70%;
-    background-color: red;
   }
 `;

@@ -7,7 +7,7 @@ import { Main } from '../components/organisms/Main';
 import { Sidebar } from '../components/organisms/Sidebar';
 // import { CurrentDayWeather } from '../components/organisms/CurrentDayWeather';
 import { TodayWeather } from '../components/organisms/TodayWeather';
-// import { WeekWeather } from '../components/organisms/WeekWeather';
+import { WeekWeather } from '../components/organisms/WeekWeather';
 import { Header } from '../components/organisms/Header';
 import { Body } from '../components/organisms/Body';
 
@@ -23,12 +23,12 @@ export const Home = () => {
         <Header>{/* <CurrentDayWeather title="h" /> */}</Header>
 
         <Body>
-          {/* <TodayWeather title="h" />
-          <WeekWeather title="h" /> */}
           <div>
             <TodayWeather />
           </div>
-          <div></div>
+          <div>
+            <WeekWeather title="h" />
+          </div>
         </Body>
       </Main>
       <Sidebar>

@@ -18,6 +18,7 @@ declare module 'styled-components' {
       white: string;
       blue: {
         100: string;
+        200: string;
       };
       grey: {
         100: string;
@@ -29,6 +30,7 @@ declare module 'styled-components' {
       300: string;
       400: string;
       500: string;
+      600: string;
     };
     shadows: {
       100: string;

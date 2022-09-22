@@ -2,11 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useTheme } from 'styled-components';
-import { Typography } from '../../../../shared/components/atoms/Typography';
-import { BaseContainerElementProps, BaseContainerElement } from '../../../../shared/styles/BaseContainerElement';
 
-export const WeekWeatherStyle = styled.div<BaseContainerElementProps>`
-  ${BaseContainerElement};
+import { Tabs } from '../../../../shared/components/molecules/Tabs';
+
+export const WeekWeatherStyle = styled.div`
+  height: 100%;
+  width: 100%;
+  position: relative;
 `;
 
 export type WeekWeatherProps = {
@@ -15,11 +17,11 @@ export type WeekWeatherProps = {
 
 export const WeekWeather: React.FC<WeekWeatherProps> = ({ title }) => {
   const theme = useTheme();
-  return (
-    <WeekWeatherStyle height="100%" width="70%" background={theme.gradients[300]}>
-      <Typography variant="h6" weight="semibold">
-        {title}
-      </Typography>
-    </WeekWeatherStyle>
-  );
+  const [toggle, setToggle] = React.useState<number>(1);
+
+  const toggleTab = (index: number) => {
+    setToggle(index);
+  };
+
+  return <Tabs title="a" />;
 };
