@@ -1,6 +1,7 @@
+import React from 'react';
 import styled from 'styled-components';
 
-export const Button = styled.button`
+export const Tabs = styled.div`
   display: inline-block;
   border-radius: ${(props) => props.theme.borderRadius};
   padding: 0.5rem 0;
@@ -11,4 +12,5 @@ export const Button = styled.button`
   border: 2px solid white;
   background: red;
   color: black;
+  font-family: 'Poppins', sans-serif;
 `;

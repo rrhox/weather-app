@@ -1,48 +1,26 @@
 import React from 'react';
-import { Button } from '../../../shared/components/atomic/Button';
-import { useGetCurrentWeatherByCityQuery } from '../../../shared/store/reducers/api/openWeather/currentWeather';
-import { useGetForecastWeatherByCityQuery } from '../../../shared/store/reducers/api/openWeather/forecastWeather';
+import { Button } from '../../../shared/components/atoms/Button';
+
+import { WeatherCard } from '../components/WeatherCard';
+
+import styled from 'styled-components';
+import { Main } from '../components/organisms/Main';
+import { Sidebar } from '../components/organisms/Sidebar';
+
+export const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  background: ${(props) => props.theme.colors.grey[100]};
+  display: flex;
+`;
 
 export const Home = () => {
-  const {
-    data: currentWeather,
-    error: errorCurrentWeather,
-    isLoading: isLoadingCurrentWeather,
-  } = useGetCurrentWeatherByCityQuery('milan');
-  const {
-    data: forecastWeather,
-    error: errorForecastWeather,
-    isLoading: isLoadingForecastWeather,
-  } = useGetForecastWeatherByCityQuery('milan');
-
   return (
-    <div>
-      <div>
-        <Button>hwllo world</Button>
-      </div>
-      <code>
-        {errorCurrentWeather ? (
-          <>Oh no, there was an error</>
-        ) : isLoadingCurrentWeather ? (
-          <>Loading...</>
-        ) : currentWeather ? (
-          <>
-            <h3>{JSON.stringify(currentWeather, null, 2)}</h3>
-          </>
-        ) : null}
-      </code>
-
-      <code>
-        {errorForecastWeather ? (
-          <>Oh no, there was an error</>
-        ) : isLoadingForecastWeather ? (
-          <>Loading...</>
-        ) : forecastWeather ? (
-          <>
-            <h3>{JSON.stringify(forecastWeather, null, 2)}</h3>
-          </>
-        ) : null}
-      </code>
-    </div>
+    <Container>
+      <Main></Main>
+      <Sidebar>
+        <WeatherCard title="London" />
+      </Sidebar>
+    </Container>
   );
 };
