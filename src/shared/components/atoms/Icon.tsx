@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC, memo, useMemo } from 'react';
 
 export type IconType = 'location' | 'plus' | 'search' | 'cloudy' | 'partly-cloudly' | 'rain-sunny' | 'rain' | 'sunny';
 
-export type IconProps = { name: IconType };
+type IconProps = { name: IconType };
 
-const Icon: React.FC<IconProps> = React.memo(({ name }) => {
-  const getIcon = React.useMemo(() => {
+const Icon: FC<IconProps> = memo(({ name }) => {
+  const getIcon = useMemo(() => {
     return require(`../../assets/${name}.png`);
   }, [name]);
 

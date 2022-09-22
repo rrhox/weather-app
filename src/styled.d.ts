@@ -13,15 +13,26 @@ declare module 'styled-components' {
         medium: number;
         light: number;
       };
+      colors: {
+        100: string;
+        200: string;
+      };
     };
     colors: {
       white: string;
       blue: {
         100: string;
         200: string;
+        300: string;
+        400: string;
+        600: string;
+        700: string;
+        800: string;
       };
       grey: {
         100: string;
+        200: string;
+        300: string;
       };
     };
     gradients: {

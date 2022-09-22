@@ -1,39 +1,50 @@
-import React, { ReactNode } from 'react';
-import styled, { useTheme } from 'styled-components';
+import React, { ButtonHTMLAttributes, FC, memo, ReactNode } from 'react';
+import styled, { css, useTheme } from 'styled-components';
 import { BaseContainerElement, BaseContainerElementProps } from '../../styles/BaseContainerElement';
 import { Icon, IconType } from './Icon';
 import { Typography } from './Typography';
 
-export const ButtonStyle = styled.button<BaseContainerElementProps>`
-  ${BaseContainerElement}
+const BaseButton = css`
+  cursor: pointer;
 `;
 
-export const ButtonTextStyle = styled.button`
+const ButtonContained = styled.button<BaseContainerElementProps>`
+  ${BaseContainerElement}
+  ${BaseButton}
+  color: ${(props) => props.theme.typography.colors[100]}
+`;
+
+const ButtonText = styled.button`
+  ${BaseButton}
   display: flex;
   align-items: center;
+  color: ${(props) => props.theme.typography.colors[200]};
 `;
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant: 'text' | 'contained';
   withIcon?: IconType;
   children: string | ReactNode;
 };
 
-export const Button: React.FC<ButtonProps> = ({ variant, withIcon, children, ...rest }) => {
+const Button: FC<ButtonProps> = memo(({ variant, withIcon, children, ...rest }) => {
   const theme = useTheme();
   return variant === 'text' ? (
-    <ButtonTextStyle {...rest}>
+    <ButtonText {...rest}>
       {withIcon && <Icon name={withIcon} />}
       <Typography variant="subtitle2" weight="semibold" ml={1}>
         {children}
       </Typography>
-    </ButtonTextStyle>
+    </ButtonText>
   ) : (
-    <ButtonStyle height="14rem" background={theme.gradients[300]} {...rest}>
+    <ButtonContained height="14rem" background={theme.gradients[300]} {...rest}>
       {withIcon && <Icon name={withIcon} />}
       <Typography variant="h5" weight="semibold">
         {children}
       </Typography>
-    </ButtonStyle>
+    </ButtonContained>
   );
-};
+});
+
+Button.displayName = 'Button';
+export { Button };
