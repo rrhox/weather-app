@@ -13,7 +13,6 @@ import { Body } from '../components/organisms/Body';
 
 export const Container = styled.div`
   width: 100%;
-  background: ${(props) => props.theme.colors.grey[100]};
   display: flex;
 `;
 

@@ -4,9 +4,8 @@ import styled from 'styled-components';
 import { AppRoutes } from './shared/routes';
 
 export const AppContainer = styled.main`
-  height: calc(100vh - 10rem);
   margin: 5rem;
-  /* border: 1px solid black; */
+  background: ${(props) => props.theme.colors.grey[100]};
 `;
 
 export const App = () => {
