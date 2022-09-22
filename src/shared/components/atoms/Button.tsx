@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { BaseContainerElement, BaseContainerElementProps } from '../../styles/BaseContainerElement';
 import { Icon, IconType } from './Icon';
@@ -14,25 +14,25 @@ export const ButtonTextStyle = styled.button`
 `;
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  label: string;
-  variant: 'text' | 'button';
+  variant: 'text' | 'contained';
   withIcon?: IconType;
+  children: string | ReactNode;
 };
 
-export const Button: React.FC<ButtonProps> = ({ label, variant, withIcon, ...rest }) => {
+export const Button: React.FC<ButtonProps> = ({ variant, withIcon, children, ...rest }) => {
   const theme = useTheme();
   return variant === 'text' ? (
     <ButtonTextStyle {...rest}>
       {withIcon && <Icon name={withIcon} />}
       <Typography variant="subtitle2" weight="semibold" ml={1}>
-        {label}
+        {children}
       </Typography>
     </ButtonTextStyle>
   ) : (
     <ButtonStyle height="14rem" background={theme.gradients[300]} {...rest}>
       {withIcon && <Icon name={withIcon} />}
       <Typography variant="h5" weight="semibold">
-        {label}
+        {children}
       </Typography>
     </ButtonStyle>
   );

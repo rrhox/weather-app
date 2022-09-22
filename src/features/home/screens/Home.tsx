@@ -18,13 +18,12 @@ export const Home = () => {
     <Container>
       <Main></Main>
       <Sidebar>
-        <WeatherCard title="London" />
-
-        <Button variant="text" label="Aggiungi città" withIcon="plus">
-          Add Location
+        <Button variant="text" withIcon="plus">
+          Aggiungi città
         </Button>
-        <Button variant="button" label="Add Location" withIcon="location" onClick={() => console.log('click')}>
-          Add Location
+        <WeatherCard title="London" />
+        <Button variant="contained" withIcon="location" onClick={() => console.log('click')}>
+          Add Localization
         </Button>
       </Sidebar>
     </Container>
