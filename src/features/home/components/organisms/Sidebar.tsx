@@ -8,4 +8,9 @@ export const Sidebar = styled.div`
   align-items: center;
   justify-content: start;
   margin-left: 5rem;
+
+  @media (max-width: 1080px) {
+    width: 100%;
+    margin-left: 0;
+  }
 `;
