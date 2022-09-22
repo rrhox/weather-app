@@ -5,7 +5,8 @@ import { rootReducer } from './reducers';
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
   return configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.currentWeather.middleware),
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(api.currentWeather.middleware, api.forecastWeather.middleware),
     preloadedState,
   });
 };

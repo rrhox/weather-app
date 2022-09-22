@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '../../../shared/components/atomic/Button';
-import { useGetCurrentWeatherByCityQuery } from '../../../shared/store/reducers/api/currentWeather';
-import { useGetForecastWeatherByCityQuery } from '../../../shared/store/reducers/api/forecastWeather';
+import { useGetCurrentWeatherByCityQuery } from '../../../shared/store/reducers/api/openWeather/currentWeather';
+import { useGetForecastWeatherByCityQuery } from '../../../shared/store/reducers/api/openWeather/forecastWeather';
 
 export const Home = () => {
   const {
