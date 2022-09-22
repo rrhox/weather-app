@@ -27,6 +27,7 @@ declare module 'styled-components' {
       100: string;
       200: string;
       300: string;
+      400: string;
     };
     shadows: {
       100: string;

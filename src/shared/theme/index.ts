@@ -19,6 +19,7 @@ const theme: DefaultTheme = {
     100: 'linear-gradient(130deg,#011354 0%,#5B9FE3 100%)',
     200: 'linear-gradient(130deg, #464C64 0%, #99A9B9 100%)',
     300: 'linear-gradient(130deg, #5374E7 0%, #77B9F5 100%)',
+    400: 'linear-gradient(130deg, #b9d4eb 0%, #8fbede 100%)',
   },
   shadows: {
     100: '5px 10px 20px 0 rgba(0,0,0,0.17)',

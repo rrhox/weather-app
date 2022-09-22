@@ -5,10 +5,14 @@ import { Button } from '../../../shared/components/atoms/Button';
 import styled from 'styled-components';
 import { Main } from '../components/organisms/Main';
 import { Sidebar } from '../components/organisms/Sidebar';
+// import { CurrentDayWeather } from '../components/organisms/CurrentDayWeather';
+import { TodayWeather } from '../components/organisms/TodayWeather';
+// import { WeekWeather } from '../components/organisms/WeekWeather';
+import { Header } from '../components/organisms/Header';
+import { Body } from '../components/organisms/Body';
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
   background: ${(props) => props.theme.colors.grey[100]};
   display: flex;
 `;
@@ -16,7 +20,18 @@ export const Container = styled.div`
 export const Home = () => {
   return (
     <Container>
-      <Main></Main>
+      <Main>
+        <Header>{/* <CurrentDayWeather title="h" /> */}</Header>
+
+        <Body>
+          {/* <TodayWeather title="h" />
+          <WeekWeather title="h" /> */}
+          <div>
+            <TodayWeather />
+          </div>
+          <div></div>
+        </Body>
+      </Main>
       <Sidebar>
         <Button variant="text" withIcon="plus">
           Aggiungi città
