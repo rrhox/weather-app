@@ -1,16 +1,39 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
+import { BaseContainerElement, BaseContainerElementProps } from '../../styles/BaseContainerElement';
+import { Icon, IconType } from './Icon';
+import { Typography } from './Typography';
 
-export const Button = styled.button`
-  display: inline-block;
-  border-radius: ${(props) => props.theme.borderRadius};
-  padding: 0.5rem 0;
-  margin: 0.5rem 1rem;
-  width: 11rem;
-  background: transparent;
-  color: white;
-  border: 2px solid white;
-  background: red;
-  color: black;
-  font-family: 'Poppins', sans-serif;
+export const ButtonStyle = styled.button<BaseContainerElementProps>`
+  ${BaseContainerElement}
 `;
+
+export const ButtonTextStyle = styled.button`
+  display: flex;
+  align-items: center;
+`;
+
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  label: string;
+  variant: 'text' | 'button';
+  withIcon?: IconType;
+};
+
+export const Button: React.FC<ButtonProps> = ({ label, variant, withIcon, ...rest }) => {
+  const theme = useTheme();
+  return variant === 'text' ? (
+    <ButtonTextStyle {...rest}>
+      {withIcon && <Icon name={withIcon} />}
+      <Typography variant="subtitle2" weight="semibold" ml={1}>
+        {label}
+      </Typography>
+    </ButtonTextStyle>
+  ) : (
+    <ButtonStyle height="14rem" background={theme.gradients[300]} {...rest}>
+      {withIcon && <Icon name={withIcon} />}
+      <Typography variant="h5" weight="semibold">
+        {label}
+      </Typography>
+    </ButtonStyle>
+  );
+};

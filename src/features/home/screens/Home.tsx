@@ -1,8 +1,7 @@
 import React from 'react';
-import { Button } from '../../../shared/components/atoms/Button';
 
 import { WeatherCard } from '../components/WeatherCard';
-
+import { Button } from '../../../shared/components/atoms/Button';
 import styled from 'styled-components';
 import { Main } from '../components/organisms/Main';
 import { Sidebar } from '../components/organisms/Sidebar';
@@ -20,6 +19,13 @@ export const Home = () => {
       <Main></Main>
       <Sidebar>
         <WeatherCard title="London" />
+
+        <Button variant="text" label="Aggiungi città" withIcon="plus">
+          Add Location
+        </Button>
+        <Button variant="button" label="Add Location" withIcon="location" onClick={() => console.log('click')}>
+          Add Location
+        </Button>
       </Sidebar>
     </Container>
   );

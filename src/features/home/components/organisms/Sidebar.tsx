@@ -4,6 +4,8 @@ export const Sidebar = styled.div`
   background: red;
   width: 30%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  padding: 2rem;
 `;

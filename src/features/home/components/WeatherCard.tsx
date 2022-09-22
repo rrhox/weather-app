@@ -1,14 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Card } from '../../../shared/components/atoms/Card';
-import { IconWeather } from '../../../shared/components/atoms/IconWeather';
+import { BaseContainerElement, BaseContainerElementProps } from '../../../shared/styles/BaseContainerElement';
 import { Typography } from '../../../shared/components/atoms/Typography';
 import { useTheme } from 'styled-components';
+import { Icon } from '../../../shared/components/atoms/Icon';
 
-export const WeatherCardStyle = styled(Card)`
+export const WeatherCardStyle = styled.div<BaseContainerElementProps>`
+  ${BaseContainerElement};
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 2rem;
+  color: ${(props) => props.theme.colors.white};
 `;
 
 export type WeatherCardProps = {
@@ -18,7 +21,7 @@ export type WeatherCardProps = {
 export const WeatherCard: React.FC<WeatherCardProps> = ({ title }) => {
   const theme = useTheme();
   return (
-    <WeatherCardStyle height="140px" width="374px" background={theme.gradients[100]}>
+    <WeatherCardStyle height="14rem" background={theme.gradients[100]}>
       <div>
         <Typography variant="h6" weight="semibold">
           {title}
@@ -34,7 +37,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ title }) => {
         </Typography>
       </div>
       <div>
-        <IconWeather type="sunny" />
+        <Icon name="sunny" />
       </div>
       <div>
         <Typography variant="h1" weight="bold">
