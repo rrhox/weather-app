@@ -15,6 +15,7 @@ const colors: DefaultTheme['colors'] = {
     100: '#f1f1f1',
     200: '#99A9B9',
     300: '#464C64',
+    400: '#B8B8B8',
   },
 };
 

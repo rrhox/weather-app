@@ -15,6 +15,8 @@ import { Header } from '../components/templates/Header';
 import { BaseMargin } from '../../../shared/styles/BaseMargin';
 import { useGetCurrentWeatherByCityQuery } from '../../../shared/store/reducers/api/openWeather';
 import { Loading } from '../../../shared/components/atoms/Loading';
+import { Input } from '../../../shared/components/atoms/Input';
+import { SectionWithTitle } from '../../../shared/components/molecules/SectionWithTitle';
 
 const Container = styled.div`
   width: 100%;
@@ -82,10 +84,16 @@ export const Home = () => {
             index={3}
           />
         </ContainerWeatherCard>
-        <Divider mt={4} mb={4} />
-        <Button variant="contained" withIcon="location" onClick={() => console.log('click')}>
-          Add Localization
-        </Button>
+        <Divider mb={2} />
+        <SectionWithTitle title="Search">
+          <Input placeholder="ex: Miami" />
+        </SectionWithTitle>
+        <Divider mt={4} />
+        <SectionWithTitle title="Localization">
+          <Button variant="contained" withIcon="location" onClick={() => console.log('click')}>
+            Add Localization
+          </Button>
+        </SectionWithTitle>
       </Sidebar>
     </Container>
   );
