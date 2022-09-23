@@ -4,7 +4,7 @@ import { Icon } from '../../../../shared/components/atoms/Icon';
 import { Typography } from '../../../../shared/components/atoms/Typography';
 
 const Container = styled.div`
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: ${(props) => props.theme.opacity[100]};
   height: 100%;
   width: 30%;
   border-radius: ${(props) => props.theme.borderRadius};

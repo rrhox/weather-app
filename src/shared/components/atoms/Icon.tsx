@@ -1,6 +1,15 @@
 import React, { FC, memo, useMemo } from 'react';
 
-export type IconType = 'location' | 'plus' | 'search' | 'cloudy' | 'partly-cloudly' | 'rain-sunny' | 'rain' | 'sunny';
+export type IconType =
+  | 'wind'
+  | 'location'
+  | 'plus'
+  | 'search'
+  | 'cloudy'
+  | 'partly-cloudly'
+  | 'rain-sunny'
+  | 'rain'
+  | 'sunny';
 
 type IconProps = { name: IconType };
 

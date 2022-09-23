@@ -40,6 +40,9 @@ const theme: DefaultTheme = {
   shadows: {
     100: '5px 10px 20px 0 rgba(0,0,0,0.17)',
   },
+  opacity: {
+    100: 'rgba(255, 255, 255, 0.1)',
+  },
 };
 
 export { theme };

@@ -6,6 +6,7 @@ import { Slider } from '../../../../shared/components/molecules/Slider';
 
 import { Tabs } from '../../../../shared/components/molecules/Tabs';
 import { MinimalDayWeatherCard } from '../molecules/MinimalWeatherCard';
+import { MonthWeather } from './MonthWeather';
 
 const CardContainer = styled.div`
   display: flex;
@@ -40,11 +41,7 @@ const WeekWeather: React.FC = memo(() => {
         },
         {
           tabLabel: 'This month',
-          content: (
-            <Typography variant="h5" weight="semibold">
-              BBBB
-            </Typography>
-          ),
+          content: <MonthWeather />,
         },
       ]}
     />

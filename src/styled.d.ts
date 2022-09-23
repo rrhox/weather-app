@@ -46,5 +46,8 @@ declare module 'styled-components' {
     shadows: {
       100: string;
     };
+    opacity: {
+      100: string;
+    };
   }
 }
