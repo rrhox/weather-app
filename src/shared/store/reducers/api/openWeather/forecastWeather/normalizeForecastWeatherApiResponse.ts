@@ -4,10 +4,10 @@ import { format } from 'date-fns';
 import { convertFloatToInterger } from '../../../../../utils';
 import _ from 'lodash';
 
-export const normalizeApiResponse = (data: RawForecastWeather): ForecastWeather => {
+export const normalizeForecastWeatherApiResponse = (data: RawForecastWeather): ForecastWeather => {
   const timeline = data.list.map((el) => ({
     temperature: convertFloatToInterger(el.main.temp),
-    weather: el.weather[0].main,
+    weather: el.weather?.[0].main,
     day: new Date(el.dt_txt),
     hour: format(new Date(el.dt_txt), 'h aaa'),
   }));

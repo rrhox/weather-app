@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { useTheme } from 'styled-components';
 import { Loading } from '../../../../shared/components/atoms/Loading';
 import { Typography } from '../../../../shared/components/atoms/Typography';
-import { useGetForecastWeatherByCityQuery } from '../../../../shared/store/reducers/api/openWeather/forecastWeather';
+import { useGetForecastWeatherByCityQuery } from '../../../../shared/store/reducers/api/openWeather';
+
 import { BaseContainerElementProps, BaseContainerElement } from '../../../../shared/styles/BaseContainerElement';
 
 const Container = styled.div`

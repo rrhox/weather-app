@@ -5,10 +5,11 @@ import { Loading } from '../../../../shared/components/atoms/Loading';
 import { Slider } from '../../../../shared/components/molecules/Slider';
 
 import { Tabs } from '../../../../shared/components/molecules/Tabs';
-import { useGetForecastWeatherByCityQuery } from '../../../../shared/store/reducers/api/openWeather/forecastWeather';
+
 import { MinimalDayWeatherCard } from '../molecules/MinimalWeatherCard';
 import { MonthWeather } from './MonthWeather';
 import { format } from 'date-fns';
+import { useGetForecastWeatherByCityQuery } from '../../../../shared/store/reducers/api/openWeather';
 
 const CardContainer = styled.div`
   display: flex;

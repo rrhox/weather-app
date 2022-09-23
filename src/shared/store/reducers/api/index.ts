@@ -1,4 +1,3 @@
-import { currentWeather } from './openWeather/currentWeather';
-import { forecastWeather } from './openWeather/forecastWeather';
+import { openWeather } from './openWeather';
 
-export const api = { currentWeather, forecastWeather };
+export const api = { openWeather };

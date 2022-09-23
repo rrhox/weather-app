@@ -7,7 +7,7 @@ import cityBackground from '../../../../shared/assets/city-header.png';
 import { Icon } from '../../../../shared/components/atoms/Icon';
 import { Loading } from '../../../../shared/components/atoms/Loading';
 import { Typography } from '../../../../shared/components/atoms/Typography';
-import { useGetCurrentWeatherByCityQuery } from '../../../../shared/store/reducers/api/openWeather/currentWeather';
+import { useGetCurrentWeatherByCityQuery } from '../../../../shared/store/reducers/api/openWeather';
 import { BaseContainerElementProps, BaseContainerElement } from '../../../../shared/styles/BaseContainerElement';
 import { format } from 'date-fns';
 
