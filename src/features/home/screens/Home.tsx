@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { WeatherCard } from '../components/molecules/WeatherCard';
 import { Button } from '../../../shared/components/atoms/Button';
@@ -36,13 +36,20 @@ const Divider = styled.div`
 
 export const Home = () => {
   const {
-    data: currentWeather,
-    error: errorCurrentWeather,
-    isLoading: isLoadingCurrentWeather,
+    data: currentWeatherLondon,
+    error: errorCurrentWeatherLondon,
+    isLoading: isLoadingCurrentWeatherLondon,
   } = useGetCurrentWeatherByCityQuery('london');
 
-  if (!currentWeather || errorCurrentWeather) return <div>Error: {JSON.stringify(errorCurrentWeather)}</div>;
-  if (isLoadingCurrentWeather) return <Loading />;
+  const {
+    data: currentWeatherRome,
+    error: errorCurrentWeatherRome,
+    isLoading: isLoadingCurrentWeatherRome,
+  } = useGetCurrentWeatherByCityQuery('rome');
+
+  if (errorCurrentWeatherRome || errorCurrentWeatherLondon) return <div>Error</div>;
+  if (!currentWeatherRome || !currentWeatherLondon || isLoadingCurrentWeatherLondon || isLoadingCurrentWeatherRome)
+    return <Loading />;
 
   return (
     <Container>
@@ -68,21 +75,21 @@ export const Home = () => {
         <Divider mb={5} />
         <ContainerWeatherCard>
           <WeatherCard
-            city={currentWeather.city}
-            day={format(currentWeather?.date, 'EEEE d,')}
-            hour={format(currentWeather?.date, 'h:mm aaa')}
-            month={format(currentWeather?.date, 'MMMM')}
-            temperature={currentWeather?.temperature}
-            weather={currentWeather?.weather}
+            city={currentWeatherLondon.city}
+            day={format(currentWeatherLondon?.date, 'EEEE d,')}
+            hour={format(currentWeatherLondon?.date, 'h:mm aaa')}
+            month={format(currentWeatherLondon?.date, 'MMMM')}
+            temperature={currentWeatherLondon?.temperature}
+            weather={currentWeatherLondon?.weather}
             index={0}
           />
           <WeatherCard
-            city={currentWeather.city}
-            day={format(currentWeather?.date, 'EEEE d,')}
-            hour={format(currentWeather?.date, 'h:mm aaa')}
-            month={format(currentWeather?.date, 'MMMM')}
-            temperature={currentWeather.temperature}
-            weather={currentWeather?.weather}
+            city={currentWeatherRome.city}
+            day={format(currentWeatherRome?.date, 'EEEE d,')}
+            hour={format(currentWeatherRome?.date, 'h:mm aaa')}
+            month={format(currentWeatherRome?.date, 'MMMM')}
+            temperature={currentWeatherRome.temperature}
+            weather={currentWeatherRome?.weather}
             index={3}
           />
         </ContainerWeatherCard>
