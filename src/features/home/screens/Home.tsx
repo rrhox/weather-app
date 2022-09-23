@@ -26,7 +26,7 @@ export const Home = () => {
     <Container>
       <Main>
         <Header>
-          <CurrentDayWeather title="h" />
+          <CurrentDayWeather title="" />
         </Header>
 
         <Body>

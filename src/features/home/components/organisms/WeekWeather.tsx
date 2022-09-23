@@ -1,21 +1,32 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
+import { Loading } from '../../../../shared/components/atoms/Loading';
 
-import { Typography } from '../../../../shared/components/atoms/Typography';
 import { Slider } from '../../../../shared/components/molecules/Slider';
 
 import { Tabs } from '../../../../shared/components/molecules/Tabs';
+import { useGetForecastWeatherByCityQuery } from '../../../../shared/store/reducers/api/openWeather/forecastWeather';
 import { MinimalDayWeatherCard } from '../molecules/MinimalWeatherCard';
 import { MonthWeather } from './MonthWeather';
+import { format } from 'date-fns';
 
 const CardContainer = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  justify-content: space-between;
+  /* justify-content: space-between;*/
+  gap: 3rem;
 `;
 
 const WeekWeather: React.FC = memo(() => {
+  const {
+    data: forecastWeather,
+    error: errorForecastWeather,
+    isLoading: isLoadingForecastWeather,
+  } = useGetForecastWeatherByCityQuery('milan');
+
+  if (!forecastWeather || errorForecastWeather) return <div>Error: {JSON.stringify(errorForecastWeather)}</div>;
+  if (isLoadingForecastWeather) return <Loading />;
   return (
     <Tabs
       data={[
@@ -23,19 +34,15 @@ const WeekWeather: React.FC = memo(() => {
           tabLabel: 'This week',
           content: (
             <Slider>
-              <CardContainer>
-                <MinimalDayWeatherCard temperature={18} day="Lun" />
-                <MinimalDayWeatherCard temperature={20} day="Mar" />
-                <MinimalDayWeatherCard temperature={22} day="Mer" />
-              </CardContainer>
-              <CardContainer>
-                <MinimalDayWeatherCard temperature={24} day="Gio" />
-                <MinimalDayWeatherCard temperature={19} day="Ven" />
-                <MinimalDayWeatherCard temperature={17} day="Sab" />
-              </CardContainer>
-              <CardContainer>
-                <MinimalDayWeatherCard temperature={21} day="Dom" />
-              </CardContainer>
+              {forecastWeather.week.map((w, i: number) => {
+                return (
+                  <CardContainer key={i}>
+                    {w.map((e, i: number) => (
+                      <MinimalDayWeatherCard key={i} temperature={e.temperature} day={format(e.day, 'eee')} />
+                    ))}
+                  </CardContainer>
+                );
+              })}
             </Slider>
           ),
         },

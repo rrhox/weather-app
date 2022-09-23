@@ -1,0 +1,1 @@
+export { convertFloatToInterger } from './convertFloatToInterger';

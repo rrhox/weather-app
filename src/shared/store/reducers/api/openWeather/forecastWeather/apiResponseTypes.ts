@@ -1,11 +1,14 @@
 import { WeatherMain } from '../shared/apiResponseTypes';
 
+type WeatherInfo = {
+  temperature: number;
+  weather: WeatherMain;
+  day: Date;
+  hour: string;
+};
+
 export type ForecastWeather = {
-  week: Array<{
-    temperature: number;
-    weather: WeatherMain;
-    day: number;
-    hour: number;
-  }>;
+  timeline: Array<WeatherInfo>;
+  week: Array<Array<WeatherInfo>>;
   city: string;
 };

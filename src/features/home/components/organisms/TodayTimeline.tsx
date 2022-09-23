@@ -2,7 +2,9 @@ import React, { memo } from 'react';
 import styled from 'styled-components';
 
 import { useTheme } from 'styled-components';
+import { Loading } from '../../../../shared/components/atoms/Loading';
 import { Typography } from '../../../../shared/components/atoms/Typography';
+import { useGetForecastWeatherByCityQuery } from '../../../../shared/store/reducers/api/openWeather/forecastWeather';
 import { BaseContainerElementProps, BaseContainerElement } from '../../../../shared/styles/BaseContainerElement';
 
 const Container = styled.div`
@@ -95,6 +97,16 @@ const TimelineItem: React.FC<TimelineItemProps> = memo(({ temperature, hour, isC
 
 const TodayTimeline: React.FC = memo(() => {
   const theme = useTheme();
+
+  const {
+    data: forecastWeather,
+    error: errorForecastWeather,
+    isLoading: isLoadingForecastWeather,
+  } = useGetForecastWeatherByCityQuery('milan');
+
+  if (!forecastWeather || errorForecastWeather) return <div>Error: {JSON.stringify(errorForecastWeather)}</div>;
+  if (isLoadingForecastWeather) return <Loading />;
+
   return (
     <Container>
       <Typography variant="h5" weight="semibold" mt={2} mb={2} ml={2}>
@@ -109,14 +121,10 @@ const TodayTimeline: React.FC = memo(() => {
               </Typography>
             </div>
             <TimelineItem temperature={22} hour="4 p.m" isCurrentTime />
-            <TimelineItem temperature={22} hour="5 p.m" />
-            <TimelineItem temperature={22} hour="6 p.m" />
-            <TimelineItem temperature={22} hour="7 p.m" />
-            <TimelineItem temperature={22} hour="8 p.m" />
-            <TimelineItem temperature={22} hour="9 p.m" />
-            <TimelineItem temperature={22} hour="10 p.m" />
-            <TimelineItem temperature={22} hour="11 p.m" />
-            <TimelineItem temperature={22} hour="12 p.m" />
+
+            {forecastWeather.timeline.map((w, i: number) => (
+              <TimelineItem key={i} temperature={w.temperature} hour={w.hour} />
+            ))}
           </Line>
         </ScrollContainer>
       </Timeline>

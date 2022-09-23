@@ -5,8 +5,11 @@ import { useTheme } from 'styled-components';
 
 import cityBackground from '../../../../shared/assets/city-header.png';
 import { Icon } from '../../../../shared/components/atoms/Icon';
+import { Loading } from '../../../../shared/components/atoms/Loading';
 import { Typography } from '../../../../shared/components/atoms/Typography';
+import { useGetCurrentWeatherByCityQuery } from '../../../../shared/store/reducers/api/openWeather/currentWeather';
 import { BaseContainerElementProps, BaseContainerElement } from '../../../../shared/styles/BaseContainerElement';
+import { format } from 'date-fns';
 
 export const CurrentDayWeatherStyle = styled.div<BaseContainerElementProps & { image: string }>`
   ${BaseContainerElement};
@@ -44,11 +47,20 @@ export type CurrentDayWeatherProps = {
 
 export const CurrentDayWeather: React.FC<CurrentDayWeatherProps> = ({ title }) => {
   const theme = useTheme();
+  const {
+    data: currentWeather,
+    error: errorCurrentWeather,
+    isLoading: isLoadingCurrentWeather,
+  } = useGetCurrentWeatherByCityQuery('milan');
+
+  if (!currentWeather || errorCurrentWeather) return <div>Error: {JSON.stringify(errorCurrentWeather)}</div>;
+  if (isLoadingCurrentWeather) return <Loading />;
+
   return (
     <CurrentDayWeatherStyle image={cityBackground} height="100%" background={theme.gradients[400]}>
       <Card height="28rem" width="14rem" background={theme.gradients[300]}>
         <Typography variant="h1" weight="bold">
-          18°
+          {currentWeather?.temperature}°
         </Typography>
         <div>
           <Icon name="sunny" />
@@ -57,13 +69,14 @@ export const CurrentDayWeather: React.FC<CurrentDayWeatherProps> = ({ title }) =
       <ContainerTitle>
         <div>
           <Typography variant="h3" weight="semibold" mb={1}>
-            Friday 18,
+            Milan
           </Typography>
+
           <Typography variant="subtitle2" weight="medium" mb={1}>
-            september
+            {format(currentWeather?.date, 'EEEE d, MMMM')}
           </Typography>
           <Typography variant="subtitle2" weight="light">
-            2:38 PM
+            {currentWeather?.weather}
           </Typography>
         </div>
       </ContainerTitle>
