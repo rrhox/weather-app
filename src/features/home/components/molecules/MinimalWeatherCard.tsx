@@ -1,6 +1,6 @@
 import React, { FC, memo } from 'react';
 import styled from 'styled-components';
-import { Icon } from '../../../../shared/components/atoms/Icon';
+import { Icon, IconType } from '../../../../shared/components/atoms/Icon';
 import { Typography } from '../../../../shared/components/atoms/Typography';
 
 const Container = styled.div`
@@ -16,7 +16,8 @@ const Container = styled.div`
   color: ${(props) => props.theme.typography.colors[100]};
 `;
 
-const MinimalDayWeatherCard: FC<{ temperature: number; day?: string }> = memo(({ temperature, day }) => {
+type MinimalDayWeatherCardProps = { temperature: number; weather: IconType; day?: string };
+const MinimalDayWeatherCard: FC<MinimalDayWeatherCardProps> = memo(({ temperature, weather, day }) => {
   return (
     <Container>
       {day && (
@@ -28,7 +29,7 @@ const MinimalDayWeatherCard: FC<{ temperature: number; day?: string }> = memo(({
         {temperature}°
       </Typography>
       <div>
-        <Icon name="sunny" />
+        <Icon name={weather} />
       </div>
     </Container>
   );

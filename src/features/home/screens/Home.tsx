@@ -72,7 +72,8 @@ export const Home = () => {
             day={format(currentWeather?.date, 'EEEE d,')}
             hour={format(currentWeather?.date, 'h:mm aaa')}
             month={format(currentWeather?.date, 'MMMM')}
-            temperature={currentWeather.temperature}
+            temperature={currentWeather?.temperature}
+            weather={currentWeather?.weather}
             index={0}
           />
           <WeatherCard
@@ -81,6 +82,7 @@ export const Home = () => {
             hour={format(currentWeather?.date, 'h:mm aaa')}
             month={format(currentWeather?.date, 'MMMM')}
             temperature={currentWeather.temperature}
+            weather={currentWeather?.weather}
             index={3}
           />
         </ContainerWeatherCard>

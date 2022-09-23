@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { BaseContainerElement, BaseContainerElementProps } from '../../../../shared/styles/BaseContainerElement';
 import { Typography } from '../../../../shared/components/atoms/Typography';
 import { useTheme } from 'styled-components';
-import { Icon } from '../../../../shared/components/atoms/Icon';
+import { Icon, IconType } from '../../../../shared/components/atoms/Icon';
 
 export const Container = styled.div<BaseContainerElementProps>`
   ${BaseContainerElement};
@@ -22,9 +22,10 @@ export type WeatherCardProps = {
   hour: string;
   temperature: number;
   index: number;
+  weather: IconType;
 };
 
-export const WeatherCard: React.FC<WeatherCardProps> = ({ city, day, month, hour, temperature, index }) => {
+export const WeatherCard: React.FC<WeatherCardProps> = ({ city, day, month, hour, temperature, weather, index }) => {
   const theme = useTheme();
   return (
     <Container height="14rem" background={index % 2 === 0 ? theme.gradients[100] : theme.gradients[200]}>
@@ -43,7 +44,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ city, day, month, hour
         </Typography>
       </div>
       <div>
-        <Icon name="sunny" />
+        <Icon name={weather} />
       </div>
       <div>
         <Typography variant="h1" weight="bold">

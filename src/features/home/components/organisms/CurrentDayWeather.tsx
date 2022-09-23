@@ -47,7 +47,7 @@ export const CurrentDayWeather: React.FC = () => {
     data: currentWeather,
     error: errorCurrentWeather,
     isLoading: isLoadingCurrentWeather,
-  } = useGetCurrentWeatherByCityQuery('milan');
+  } = useGetCurrentWeatherByCityQuery('torino');
 
   if (!currentWeather || errorCurrentWeather) return <div>Error: {JSON.stringify(errorCurrentWeather)}</div>;
   if (isLoadingCurrentWeather) return <Loading />;
@@ -59,13 +59,13 @@ export const CurrentDayWeather: React.FC = () => {
           {currentWeather?.temperature}°
         </Typography>
         <div>
-          <Icon name="sunny" />
+          <Icon name={currentWeather?.weather} />
         </div>
       </Card>
       <ContainerTitle>
         <div>
           <Typography variant="h3" weight="semibold" mb={1}>
-            Milan
+            {currentWeather?.city}
           </Typography>
 
           <Typography variant="subtitle2" weight="medium" mb={1}>

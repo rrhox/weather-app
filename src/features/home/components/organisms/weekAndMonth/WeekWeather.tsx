@@ -32,7 +32,12 @@ const WeekWeather: React.FC = memo(() => {
         return (
           <CardContainer key={i}>
             {w.map((e, i: number) => (
-              <MinimalDayWeatherCard key={i} temperature={e.temperature} day={format(e.day, 'eee')} />
+              <MinimalDayWeatherCard
+                key={i}
+                temperature={e.temperature}
+                day={format(e.day, 'eee')}
+                weather={e.weather}
+              />
             ))}
           </CardContainer>
         );
