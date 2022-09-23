@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { WeatherCard } from '../components/WeatherCard';
+import { WeatherCard } from '../components/molecules/WeatherCard';
 import { Button } from '../../../shared/components/atoms/Button';
 import styled from 'styled-components';
 import { Main } from '../components/organisms/Main';
@@ -24,7 +24,7 @@ export const Home = () => {
     <Container>
       <Main>
         <Header>
-          <CurrentDayWeather title="h" />{' '}
+          <CurrentDayWeather title="h" />
         </Header>
 
         <Body>
@@ -32,7 +32,7 @@ export const Home = () => {
             <TodayWeather />
           </div>
           <div>
-            <WeekWeather title="h" />
+            <WeekWeather />
           </div>
         </Body>
       </Main>

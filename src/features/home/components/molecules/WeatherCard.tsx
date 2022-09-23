@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BaseContainerElement, BaseContainerElementProps } from '../../../shared/styles/BaseContainerElement';
-import { Typography } from '../../../shared/components/atoms/Typography';
+import { BaseContainerElement, BaseContainerElementProps } from '../../../../shared/styles/BaseContainerElement';
+import { Typography } from '../../../../shared/components/atoms/Typography';
 import { useTheme } from 'styled-components';
-import { Icon } from '../../../shared/components/atoms/Icon';
+import { Icon } from '../../../../shared/components/atoms/Icon';
 
 export const WeatherCardStyle = styled.div<BaseContainerElementProps>`
   ${BaseContainerElement};
