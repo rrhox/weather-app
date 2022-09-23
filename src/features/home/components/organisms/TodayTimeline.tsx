@@ -46,11 +46,12 @@ const Hour = styled.div`
 
 const Line = styled.div`
   position: relative;
+  margin-top: 5rem;
 
   &::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: 3.5rem;
     left: 50%;
     bottom: 0;
     transform: translateX(-50%);
@@ -67,24 +68,27 @@ const ScrollContainer = styled.div`
 type TimelineItemProps = {
   temperature: number;
   hour: string;
+  isNow?: boolean;
 };
 
-const TimelineItem: React.FC<TimelineItemProps> = memo(({ temperature, hour }) => {
+const TimelineItem: React.FC<TimelineItemProps> = memo(({ temperature, hour, isNow }) => {
   return (
     <ContainerItem>
       <Temperature>
-        <Typography variant="h4" weight="light">
+        <Typography variant={isNow ? 'h2' : 'h4'} weight={isNow ? 'bold' : 'light'}>
           {temperature}°
         </Typography>
       </Temperature>
       <ContainerLineAndCircle>
         <Circle />
       </ContainerLineAndCircle>
-      <Hour>
-        <Typography variant="subtitle2" weight="light">
-          {hour}
-        </Typography>
-      </Hour>
+      {!isNow && (
+        <Hour>
+          <Typography variant="subtitle2" weight="light">
+            {hour}
+          </Typography>
+        </Hour>
+      )}
     </ContainerItem>
   );
 });
@@ -99,7 +103,12 @@ const TodayTimeline: React.FC = memo(() => {
       <Timeline height="auto" background={theme.gradients[300]}>
         <ScrollContainer>
           <Line>
-            <TimelineItem temperature={22} hour="4 p.m" />
+            <div style={{ textAlign: 'center' }}>
+              <Typography variant="body1" weight="bold" mt={2.5}>
+                now
+              </Typography>
+            </div>
+            <TimelineItem temperature={22} hour="4 p.m" isNow />
             <TimelineItem temperature={22} hour="5 p.m" />
             <TimelineItem temperature={22} hour="6 p.m" />
             <TimelineItem temperature={22} hour="7 p.m" />
