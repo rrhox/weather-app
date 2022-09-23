@@ -14,9 +14,9 @@ const Timeline = styled.div<BaseContainerElementProps>`
   color: ${(props) => props.theme.colors.white};
 `;
 
-const Circle = styled.div`
-  height: 2rem;
-  width: 2rem;
+const Circle = styled.div<{ isCurrentTime?: boolean }>`
+  height: ${(props) => (props.isCurrentTime ? 3 : 2)}rem;
+  width: ${(props) => (props.isCurrentTime ? 3 : 2)}rem;
   border-radius: 50%;
   background-color: ${(props) => props.theme.colors.white};
 `;
@@ -68,21 +68,21 @@ const ScrollContainer = styled.div`
 type TimelineItemProps = {
   temperature: number;
   hour: string;
-  isNow?: boolean;
+  isCurrentTime?: boolean;
 };
 
-const TimelineItem: React.FC<TimelineItemProps> = memo(({ temperature, hour, isNow }) => {
+const TimelineItem: React.FC<TimelineItemProps> = memo(({ temperature, hour, isCurrentTime }) => {
   return (
     <ContainerItem>
       <Temperature>
-        <Typography variant={isNow ? 'h2' : 'h4'} weight={isNow ? 'bold' : 'light'}>
+        <Typography variant={isCurrentTime ? 'h2' : 'h4'} weight={isCurrentTime ? 'bold' : 'light'}>
           {temperature}°
         </Typography>
       </Temperature>
       <ContainerLineAndCircle>
-        <Circle />
+        <Circle isCurrentTime={isCurrentTime} />
       </ContainerLineAndCircle>
-      {!isNow && (
+      {!isCurrentTime && (
         <Hour>
           <Typography variant="subtitle2" weight="light">
             {hour}
@@ -108,7 +108,7 @@ const TodayTimeline: React.FC = memo(() => {
                 now
               </Typography>
             </div>
-            <TimelineItem temperature={22} hour="4 p.m" isNow />
+            <TimelineItem temperature={22} hour="4 p.m" isCurrentTime />
             <TimelineItem temperature={22} hour="5 p.m" />
             <TimelineItem temperature={22} hour="6 p.m" />
             <TimelineItem temperature={22} hour="7 p.m" />
