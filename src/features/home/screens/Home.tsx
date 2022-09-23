@@ -7,7 +7,7 @@ import { Main } from '../components/templates/Main';
 import { Sidebar } from '../components/templates/Sidebar';
 
 import { TodayTimeline } from '../components/organisms/TodayTimeline';
-import { WeekWeather } from '../components/organisms/WeekWeather';
+import { WeekAndMonthWeather } from '../components/organisms/weekAndMonth/WeekAndMonthWeather';
 import { format } from 'date-fns';
 import { Body } from '../components/templates/Body';
 import { CurrentDayWeather } from '../components/organisms/CurrentDayWeather';
@@ -54,7 +54,7 @@ export const Home = () => {
             <TodayTimeline />
           </div>
           <div>
-            <WeekWeather />
+            <WeekAndMonthWeather />
           </div>
         </Body>
       </Main>
