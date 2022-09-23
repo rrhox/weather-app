@@ -13,10 +13,22 @@ export const Input = styled.input<InputHTMLAttributes<HTMLInputElement>>`
   padding-left: 4rem;
   border: none;
   color: ${(props) => props.theme.typography.colors[200]};
+  position: relative;
+
   &:focus-visible {
     outline: none;
   }
   &::placeholder {
     color: ${(props) => props.theme.colors.grey[400]};
+  }
+
+  &::before {
+    content: '';
+    background: red;
+    position: absolute;
+    height: 5rem;
+    width: 5rem;
+    right: 0;
+    top: 0;
   }
 `;
