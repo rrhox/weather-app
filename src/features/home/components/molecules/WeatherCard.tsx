@@ -11,7 +11,7 @@ export const WeatherCardStyle = styled.div<BaseContainerElementProps>`
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.typography.colors[100]};
 `;
 
 export type WeatherCardProps = {

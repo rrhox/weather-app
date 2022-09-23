@@ -11,7 +11,7 @@ import { BaseContainerElementProps, BaseContainerElement } from '../../../../sha
 export const CurrentDayWeatherStyle = styled.div<BaseContainerElementProps & { image: string }>`
   ${BaseContainerElement};
   padding: 2rem;
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.typography.colors[100]};
   position: relative;
   background-image: url(${(props) => props.image});
   background-size: cover;
@@ -22,7 +22,7 @@ export const ContainerTitle = styled.div`
   display: flex;
   align-items: center;
   height: 60%;
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.typography.colors[200]};
 `;
 
 export const Card = styled.div<BaseContainerElementProps>`

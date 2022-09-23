@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const Timeline = styled.div<BaseContainerElementProps>`
   ${BaseContainerElement};
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.typography.colors[100]};
 `;
 
 const Circle = styled.div<{ isCurrentTime?: boolean }>`
