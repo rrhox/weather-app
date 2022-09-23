@@ -3,13 +3,15 @@ import React from 'react';
 import { WeatherCard } from '../components/molecules/WeatherCard';
 import { Button } from '../../../shared/components/atoms/Button';
 import styled from 'styled-components';
-import { Main } from '../components/organisms/Main';
-import { Sidebar } from '../components/organisms/Sidebar';
-import { CurrentDayWeather } from '../components/organisms/CurrentDayWeather';
-import { TodayWeather } from '../components/organisms/TodayWeather';
+import { Main } from '../components/templates/Main';
+import { Sidebar } from '../components/templates/Sidebar';
+
+import { TodayTimeline } from '../components/organisms/TodayTimeline';
 import { WeekWeather } from '../components/organisms/WeekWeather';
-import { Header } from '../components/organisms/Header';
-import { Body } from '../components/organisms/Body';
+
+import { Body } from '../components/templates/Body';
+import { CurrentDayWeather } from '../components/organisms/CurrentDayWeather';
+import { Header } from '../components/templates/Header';
 
 export const Container = styled.div`
   width: 100%;
@@ -29,7 +31,7 @@ export const Home = () => {
 
         <Body>
           <div>
-            <TodayWeather />
+            <TodayTimeline />
           </div>
           <div>
             <WeekWeather />

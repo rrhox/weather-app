@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 
 import { useTheme } from 'styled-components';
 import { Typography } from '../../../../shared/components/atoms/Typography';
 import { BaseContainerElementProps, BaseContainerElement } from '../../../../shared/styles/BaseContainerElement';
 
-const TodayWeatherStyle = styled.div<BaseContainerElementProps>`
-  ${BaseContainerElement};
-  color: ${(props) => props.theme.colors.white};
-`;
-
 const Container = styled.div`
   height: 100%;
+`;
+
+const Timeline = styled.div<BaseContainerElementProps>`
+  ${BaseContainerElement};
+  color: ${(props) => props.theme.colors.white};
 `;
 
 const Circle = styled.div`
@@ -34,19 +34,17 @@ const ContainerLineAndCircle = styled.div`
   width: 20%;
 `;
 
-export type TodayWeatherProps = any;
-
-const Co = styled.div`
+const Temperature = styled.div`
   width: 40%;
   text-align: right;
 `;
 
-const BB = styled.div`
+const Hour = styled.div`
   width: 40%;
   text-align: left;
 `;
 
-const Cont = styled.div`
+const Line = styled.div`
   position: relative;
 
   &::before {
@@ -60,54 +58,63 @@ const Cont = styled.div`
     background: ${(props) => props.theme.gradients[500]};
   }
 `;
-const CCC = styled.div`
+
+const ScrollContainer = styled.div`
   overflow: scroll;
   height: 39rem;
 `;
 
-const Item = () => {
+type TimelineItemProps = {
+  temperature: number;
+  hour: string;
+};
+
+const TimelineItem: React.FC<TimelineItemProps> = memo(({ temperature, hour }) => {
   return (
     <ContainerItem>
-      <Co>
+      <Temperature>
         <Typography variant="h4" weight="light">
-          22°
+          {temperature}°
         </Typography>
-      </Co>
+      </Temperature>
       <ContainerLineAndCircle>
         <Circle />
       </ContainerLineAndCircle>
-      <BB>
+      <Hour>
         <Typography variant="subtitle2" weight="light">
-          4 p.m
+          {hour}
         </Typography>
-      </BB>
+      </Hour>
     </ContainerItem>
   );
-};
+});
 
-export const TodayWeather: React.FC<TodayWeatherProps> = () => {
+const TodayTimeline: React.FC = memo(() => {
   const theme = useTheme();
   return (
     <Container>
       <Typography variant="h5" weight="semibold" mt={2} mb={2} ml={2}>
         Today
       </Typography>
-      <TodayWeatherStyle height="auto" background={theme.gradients[300]}>
-        <CCC>
-          <Cont>
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-          </Cont>
-        </CCC>
-      </TodayWeatherStyle>
+      <Timeline height="auto" background={theme.gradients[300]}>
+        <ScrollContainer>
+          <Line>
+            <TimelineItem temperature={22} hour="4 p.m" />
+            <TimelineItem temperature={22} hour="5 p.m" />
+            <TimelineItem temperature={22} hour="6 p.m" />
+            <TimelineItem temperature={22} hour="7 p.m" />
+            <TimelineItem temperature={22} hour="8 p.m" />
+            <TimelineItem temperature={22} hour="9 p.m" />
+            <TimelineItem temperature={22} hour="10 p.m" />
+            <TimelineItem temperature={22} hour="11 p.m" />
+            <TimelineItem temperature={22} hour="12 p.m" />
+          </Line>
+        </ScrollContainer>
+      </Timeline>
     </Container>
   );
-};
+});
+
+TimelineItem.displayName = 'TimelineItem';
+TodayTimeline.displayName = 'TodayTimeline';
+export { TodayTimeline };

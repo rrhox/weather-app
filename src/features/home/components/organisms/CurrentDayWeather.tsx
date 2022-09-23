@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useTheme } from 'styled-components';
-import { Typography } from '../../../../shared/components/atoms/Typography';
-import { BaseContainerElementProps, BaseContainerElement } from '../../../../shared/styles/BaseContainerElement';
 
 import cityBackground from '../../../../shared/assets/city-header.png';
 import { Icon } from '../../../../shared/components/atoms/Icon';
+import { Typography } from '../../../../shared/components/atoms/Typography';
+import { BaseContainerElementProps, BaseContainerElement } from '../../../../shared/styles/BaseContainerElement';
 
 export const CurrentDayWeatherStyle = styled.div<BaseContainerElementProps & { image: string }>`
   ${BaseContainerElement};
