@@ -1,10 +1,11 @@
-import React, { InputHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes, FC, InputHTMLAttributes, memo } from 'react';
 import styled from 'styled-components';
+import { Icon } from './Icon';
 
-export const Input = styled.input<InputHTMLAttributes<HTMLInputElement>>`
+const InputStyle = styled.input<InputHTMLAttributes<HTMLInputElement>>`
   border-radius: ${(props) => props.theme.borderRadius};
   height: 14rem;
-  width: ${(props) => (props?.width ? props.width : '100%')};
+  width: 100%;
   background: ${(props) => props.theme.colors.white};
   box-shadow: ${(props) => props.theme.shadows[100]};
   font-size: 2.8rem;
@@ -32,3 +33,35 @@ export const Input = styled.input<InputHTMLAttributes<HTMLInputElement>>`
     top: 0;
   }
 `;
+
+const Button = styled.button`
+  display: inline-block;
+  border-radius: ${(props) => props.theme.borderRadius};
+  height: 100%;
+  background: ${(props) => props.theme.gradients[300]};
+  width: 5.6rem;
+  border-radius: 2.5rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+`;
+
+const Container = styled.div`
+  width: 100%;
+  position: relative;
+`;
+
+type InputProps = InputHTMLAttributes<HTMLInputElement> & ButtonHTMLAttributes<HTMLButtonElement>;
+const Input: FC<InputProps> = memo(({ ...rest }) => {
+  return (
+    <Container>
+      <InputStyle {...rest} />
+      <Button {...rest}>
+        <Icon name="search" />
+      </Button>
+    </Container>
+  );
+});
+
+Input.displayName = 'Input';
+export { Input };

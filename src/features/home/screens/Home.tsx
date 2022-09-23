@@ -48,7 +48,7 @@ export const Home = () => {
     <Container>
       <Main>
         <Header>
-          <CurrentDayWeather title="" />
+          <CurrentDayWeather />
         </Header>
 
         <Body>
@@ -86,7 +86,7 @@ export const Home = () => {
         </ContainerWeatherCard>
         <Divider mb={2} />
         <SectionWithTitle title="Search">
-          <Input placeholder="ex: Miami" />
+          <Input placeholder="ex: Miami" onClick={() => console.log('ewe')} />
         </SectionWithTitle>
         <Divider mt={4} />
         <SectionWithTitle title="Localization">

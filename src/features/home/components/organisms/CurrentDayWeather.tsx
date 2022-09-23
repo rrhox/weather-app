@@ -41,11 +41,7 @@ export const Card = styled.div<BaseContainerElementProps>`
   align-items: center;
 `;
 
-export type CurrentDayWeatherProps = {
-  title: string;
-};
-
-export const CurrentDayWeather: React.FC<CurrentDayWeatherProps> = ({ title }) => {
+export const CurrentDayWeather: React.FC = () => {
   const theme = useTheme();
   const {
     data: currentWeather,
