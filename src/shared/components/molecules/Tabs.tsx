@@ -17,7 +17,7 @@ const Body = styled.div<BaseContainerElementProps & { index: number }>`
   border-top-left-radius: ${(props) => (props.index === 1 ? 0 : props.theme.borderRadius)};
   position: absolute;
   bottom: 0;
-  padding: 3rem;
+  padding: 3rem 3rem 0rem 3rem;
 `;
 
 const TabList = styled.div`

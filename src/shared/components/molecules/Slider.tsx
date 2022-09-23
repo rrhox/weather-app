@@ -37,7 +37,7 @@ const Body = styled.div`
 
 const InnerBody = styled.div<{ isActive: boolean }>`
   display: ${(props) => (props.isActive ? 'block' : 'none')};
-  height: 90%;
+  height: 100%;
 `;
 
 type SliderProps = {

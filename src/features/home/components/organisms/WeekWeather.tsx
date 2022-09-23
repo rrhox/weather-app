@@ -41,7 +41,12 @@ const WeekWeather: React.FC = memo(() => {
         },
         {
           tabLabel: 'This month',
-          content: <MonthWeather />,
+          content: (
+            <Slider>
+              <MonthWeather />
+              <MonthWeather />
+            </Slider>
+          ),
         },
       ]}
     />
