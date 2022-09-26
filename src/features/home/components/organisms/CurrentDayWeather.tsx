@@ -1,15 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import { useTheme } from 'styled-components';
-
 import cityBackground from '../../../../shared/assets/city-header.png';
 import { Icon } from '../../../../shared/components/atoms/Icon';
-import { Loading } from '../../../../shared/components/atoms/Loading';
 import { Typography } from '../../../../shared/components/atoms/Typography';
-import { useGetCurrentWeatherByCityQuery } from '../../../../shared/store/reducers/api/openWeather';
 import { BaseContainerElementProps, BaseContainerElement } from '../../../../shared/styles/BaseContainerElement';
 import { format } from 'date-fns';
+import { useCurrentWeatherState } from '../../hooks/api/useCurrentWeatherState';
 
 export const CurrentDayWeatherStyle = styled.div<BaseContainerElementProps & { image: string }>`
   ${BaseContainerElement};
@@ -21,11 +18,15 @@ export const CurrentDayWeatherStyle = styled.div<BaseContainerElementProps & { i
 `;
 
 export const ContainerTitle = styled.div`
-  margin: auto 20rem;
+  margin: auto 13rem;
   display: flex;
   align-items: center;
   height: 60%;
   color: ${(props) => props.theme.typography.colors[200]};
+
+  @media screen and (min-width: ${(props) => props.theme.breakpoint.md}px) {
+    margin: auto 20rem;
+  }
 `;
 
 export const Card = styled.div<BaseContainerElementProps>`
@@ -43,14 +44,9 @@ export const Card = styled.div<BaseContainerElementProps>`
 
 export const CurrentDayWeather: React.FC = () => {
   const theme = useTheme();
-  const {
-    data: currentWeather,
-    error: errorCurrentWeather,
-    isLoading: isLoadingCurrentWeather,
-  } = useGetCurrentWeatherByCityQuery('milan');
 
-  if (!currentWeather || errorCurrentWeather) return <div>Error: {JSON.stringify(errorCurrentWeather)}</div>;
-  if (isLoadingCurrentWeather) return <Loading />;
+  const currentWeather = useCurrentWeatherState('milan');
+  if (!currentWeather) return null;
 
   return (
     <CurrentDayWeatherStyle image={cityBackground} height="100%" background={theme.gradients[400]}>
@@ -69,7 +65,7 @@ export const CurrentDayWeather: React.FC = () => {
           </Typography>
 
           <Typography variant="subtitle2" weight="medium" mb={1}>
-            {format(currentWeather?.date, 'EEEE d, MMMM')}
+            {format(new Date(currentWeather?.date), 'EEEE d, MMMM')}
           </Typography>
           <Typography variant="subtitle2" weight="light">
             {currentWeather?.weather}

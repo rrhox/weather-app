@@ -5,32 +5,50 @@ import { BaseMargin, BaseMarginProps } from '../../styles/BaseMargin';
 
 const H1 = styled.h1`
   ${BaseMargin}
-  font-size: 5rem;
+  font-size: 4.5rem;
+  @media screen and (min-width: ${(props) => props.theme.breakpoint.lg}px) {
+    font-size: 5rem;
+  }
 `;
 
 const H2 = styled.h2`
   ${BaseMargin}
-  font-size: 4.2rem;
+  font-size: 3.8rem;
+  @media screen and (min-width: ${(props) => props.theme.breakpoint.lg}px) {
+    font-size: 4.2rem;
+  }
 `;
 
 const H3 = styled.h3`
   ${BaseMargin}
-  font-size: 3.2rem;
+  font-size: 2.9rem;
+  @media screen and (min-width: ${(props) => props.theme.breakpoint.lg}px) {
+    font-size: 3.2rem;
+  }
 `;
 
 const H4 = styled.h4`
   ${BaseMargin}
-  font-size: 3rem;
+  font-size: 2.5rem;
+  @media screen and (min-width: ${(props) => props.theme.breakpoint.lg}px) {
+    font-size: 3rem;
+  }
 `;
 
 const H5 = styled.h5`
   ${BaseMargin}
-  font-size: 2.8rem;
+  font-size: 2.2rem;
+  @media screen and (min-width: ${(props) => props.theme.breakpoint.lg}px) {
+    font-size: 2.8rem;
+  }
 `;
 
 const H6 = styled.h6`
   ${BaseMargin}
-  font-size: 2.6rem;
+  font-size: 1.8rem;
+  @media screen and (min-width: ${(props) => props.theme.breakpoint.lg}px) {
+    font-size: 2.6rem;
+  }
 `;
 
 const Subtitle1 = styled.span`

@@ -20,6 +20,7 @@ const colors: DefaultTheme['colors'] = {
 };
 
 const theme: DefaultTheme = {
+  breakpoint: { md: 768, lg: 1200 },
   borderRadius: '2.5rem',
   typography: {
     fontFamily: 'Poppins, sans-serif',

@@ -3,7 +3,7 @@ import { WeatherMain } from '../shared/apiResponseTypes';
 type WeatherInfo = {
   temperature: number;
   weather: WeatherMain;
-  day: Date;
+  day: string;
   hour: string;
 };
 

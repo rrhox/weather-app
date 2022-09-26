@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import { Icon } from '../../../../../shared/components/atoms/Icon';
-import { Loading } from '../../../../../shared/components/atoms/Loading';
 
 import { Typography } from '../../../../../shared/components/atoms/Typography';
 import { Slider } from '../../../../../shared/components/molecules/Slider';
-import { useGetCurrentWeatherByCityQuery } from '../../../../../shared/store/reducers/api/openWeather';
+
 import { format } from 'date-fns';
+import { useCurrentWeatherState } from '../../../hooks/api/useCurrentWeatherState';
 
 const Container = styled.div`
   background-color: ${(props) => props.theme.opacity[100]};
@@ -34,21 +34,15 @@ const Info = styled.div`
 `;
 
 const MonthWeather: React.FC = memo(() => {
-  const {
-    data: currentWeather,
-    error: errorCurrentWeather,
-    isLoading: isLoadingCurrentWeather,
-  } = useGetCurrentWeatherByCityQuery('milan');
-
-  if (!currentWeather || errorCurrentWeather) return <div>Error: {JSON.stringify(errorCurrentWeather)}</div>;
-  if (isLoadingCurrentWeather) return <Loading />;
+  const currentWeather = useCurrentWeatherState('milan');
+  if (!currentWeather) return null;
 
   return (
     <Slider>
       <Container>
         <LeftSide>
           <Typography variant="subtitle1" weight="semibold">
-            {format(currentWeather?.date, 'EEEE d, MMM')}
+            {format(new Date(currentWeather?.date), 'EEEE d, MMM')}
           </Typography>
           <Icon name="wind" />
         </LeftSide>
@@ -73,7 +67,7 @@ const MonthWeather: React.FC = memo(() => {
           </Typography>
         </Info>
       </Container>
-      <Container></Container>
+      <Container />
     </Slider>
   );
 });

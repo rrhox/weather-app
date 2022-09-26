@@ -1,13 +1,11 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
-import { Loading } from '../../../../../shared/components/atoms/Loading';
 
 import { Slider } from '../../../../../shared/components/molecules/Slider';
 
 import { MinimalDayWeatherCard } from '../../molecules/MinimalWeatherCard';
 
-import { format } from 'date-fns';
-import { useGetForecastWeatherByCityQuery } from '../../../../../shared/store/reducers/api/openWeather';
+import { useForecastWeatherState } from '../../../hooks/api/useForecastWeatherState';
 
 const CardContainer = styled.div`
   display: flex;
@@ -18,26 +16,15 @@ const CardContainer = styled.div`
 `;
 
 const WeekWeather: React.FC = memo(() => {
-  const {
-    data: forecastWeather,
-    error: errorForecastWeather,
-    isLoading: isLoadingForecastWeather,
-  } = useGetForecastWeatherByCityQuery('milan');
-
-  if (!forecastWeather || errorForecastWeather) return <div>Error: {JSON.stringify(errorForecastWeather)}</div>;
-  if (isLoadingForecastWeather) return <Loading />;
+  const forecastWeather = useForecastWeatherState('milan');
+  if (!forecastWeather) return null;
   return (
     <Slider>
       {forecastWeather.week.map((w, i: number) => {
         return (
           <CardContainer key={i}>
             {w.map((e, i: number) => (
-              <MinimalDayWeatherCard
-                key={i}
-                temperature={e.temperature}
-                day={format(e.day, 'eee')}
-                weather={e.weather}
-              />
+              <MinimalDayWeatherCard key={i} temperature={e.temperature} day={e.day} weather={e.weather} />
             ))}
           </CardContainer>
         );

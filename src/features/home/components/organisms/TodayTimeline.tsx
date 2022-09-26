@@ -7,6 +7,8 @@ import { Typography } from '../../../../shared/components/atoms/Typography';
 import { useGetForecastWeatherByCityQuery } from '../../../../shared/store/reducers/api/openWeather';
 
 import { BaseContainerElementProps, BaseContainerElement } from '../../../../shared/styles/BaseContainerElement';
+import { useCurrentWeatherState } from '../../hooks/api/useCurrentWeatherState';
+import { useForecastWeatherState } from '../../hooks/api/useForecastWeatherState';
 
 const Container = styled.div`
   height: 100%;
@@ -70,22 +72,21 @@ const ScrollContainer = styled.div`
 
 type TimelineItemProps = {
   temperature: number;
-  hour: string;
-  isCurrentTime?: boolean;
+  hour?: string;
 };
 
-const TimelineItem: React.FC<TimelineItemProps> = memo(({ temperature, hour, isCurrentTime }) => {
+const TimelineItem: React.FC<TimelineItemProps> = memo(({ temperature, hour }) => {
   return (
     <ContainerItem>
       <Temperature>
-        <Typography variant={isCurrentTime ? 'h2' : 'h4'} weight={isCurrentTime ? 'bold' : 'light'}>
+        <Typography variant={!hour ? 'h2' : 'h4'} weight={!hour ? 'bold' : 'light'}>
           {temperature}°
         </Typography>
       </Temperature>
       <ContainerLineAndCircle>
-        <Circle isCurrentTime={isCurrentTime} />
+        <Circle isCurrentTime={!hour} />
       </ContainerLineAndCircle>
-      {!isCurrentTime && (
+      {hour && (
         <Hour>
           <Typography variant="subtitle2" weight="light">
             {hour}
@@ -98,15 +99,9 @@ const TimelineItem: React.FC<TimelineItemProps> = memo(({ temperature, hour, isC
 
 const TodayTimeline: React.FC = memo(() => {
   const theme = useTheme();
-
-  const {
-    data: forecastWeather,
-    error: errorForecastWeather,
-    isLoading: isLoadingForecastWeather,
-  } = useGetForecastWeatherByCityQuery('milan');
-
-  if (!forecastWeather || errorForecastWeather) return <div>Error: {JSON.stringify(errorForecastWeather)}</div>;
-  if (isLoadingForecastWeather) return <Loading />;
+  const forecastWeather = useForecastWeatherState('milan');
+  const currentWeather = useCurrentWeatherState('milan');
+  if (!forecastWeather || !currentWeather) return null;
 
   return (
     <Container>
@@ -121,7 +116,7 @@ const TodayTimeline: React.FC = memo(() => {
                 now
               </Typography>
             </div>
-            <TimelineItem temperature={22} hour="4 p.m" isCurrentTime />
+            <TimelineItem temperature={currentWeather.temperature} />
 
             {forecastWeather.timeline.map((w, i: number) => (
               <TimelineItem key={i} temperature={w.temperature} hour={w.hour} />

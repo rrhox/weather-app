@@ -7,6 +7,6 @@ export type CurrentWeather = {
   humidity: number;
   weather: WeatherMain;
   weatherDescription: string;
-  date: Date;
+  date: string;
   city: string;
 };

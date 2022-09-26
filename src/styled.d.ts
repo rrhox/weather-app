@@ -4,6 +4,7 @@ import 'styled-components';
 // and extend them!
 declare module 'styled-components' {
   export interface DefaultTheme {
+    breakpoint: { md: number; lg: number };
     borderRadius: string;
     typography: {
       fontFamily: string;
