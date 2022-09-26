@@ -6,7 +6,7 @@ import { Typography } from '../../../../../shared/components/atoms/Typography';
 import { Slider } from '../../../../../shared/components/molecules/Slider';
 
 import { format } from 'date-fns';
-import { useCurrentWeatherState } from '../../../hooks/api/useCurrentWeatherState';
+import { useCurrentWeatherState } from '../../../hooks/useCurrentWeatherState';
 
 const Container = styled.div`
   background-color: ${(props) => props.theme.opacity[100]};
@@ -34,7 +34,7 @@ const Info = styled.div`
 `;
 
 const MonthWeather: React.FC = memo(() => {
-  const currentWeather = useCurrentWeatherState('milan');
+  const currentWeather = useCurrentWeatherState();
   if (!currentWeather) return null;
 
   return (

@@ -8,6 +8,8 @@ import { SectionWithTitle } from '../../../../shared/components/molecules/Sectio
 import { useGetCurrentWeatherByCityQuery } from '../../../../shared/store/reducers/api/openWeather';
 import { BaseMargin } from '../../../../shared/styles/BaseMargin';
 import { WeatherCard } from '../molecules/WeatherCard';
+import { useAppDispatch } from '../../../../shared/store';
+import { searchCity } from '../../../../shared/store/reducers/mainCitySlice';
 
 export const Container = styled.div`
   display: flex;
@@ -33,6 +35,8 @@ const Divider = styled.div`
 `;
 
 const Sidebar = memo(() => {
+  const dispatch = useAppDispatch();
+
   const {
     data: currentWeatherLondon,
     error: errorCurrentWeatherLondon,
@@ -48,9 +52,11 @@ const Sidebar = memo(() => {
   if (errorCurrentWeatherRome || errorCurrentWeatherLondon) return <div>Error</div>;
   if (!currentWeatherRome || !currentWeatherLondon || isLoadingCurrentWeatherLondon || isLoadingCurrentWeatherRome)
     return <Loading />;
-  const dd = new Date(new Date().getTime() - 3600 * 1000);
-  const dd2 = new Date(new Date().getTime() - 14400 * 1000);
-  console.log({ dd, dd2 });
+
+  const handleSubmit = (searchValue: string) => {
+    dispatch(searchCity(searchValue));
+  };
+
   return (
     <Container>
       <Divider mt={5} />
@@ -80,7 +86,7 @@ const Sidebar = memo(() => {
       </ContainerWeatherCard>
       <Divider mb={2} />
       <SectionWithTitle title="Search">
-        <Input placeholder="ex: Miami" />
+        <Input placeholder="ex: Miami" handleSubmit={handleSubmit} />
       </SectionWithTitle>
       <Divider mt={4} />
       <SectionWithTitle title="Localization">

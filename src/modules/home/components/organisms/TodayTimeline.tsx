@@ -2,13 +2,12 @@ import React, { memo } from 'react';
 import styled from 'styled-components';
 
 import { useTheme } from 'styled-components';
-import { Loading } from '../../../../shared/components/atoms/Loading';
 import { Typography } from '../../../../shared/components/atoms/Typography';
-import { useGetForecastWeatherByCityQuery } from '../../../../shared/store/reducers/api/openWeather';
+import { useAppSelector } from '../../../../shared/store';
 
 import { BaseContainerElementProps, BaseContainerElement } from '../../../../shared/styles/BaseContainerElement';
-import { useCurrentWeatherState } from '../../hooks/api/useCurrentWeatherState';
-import { useForecastWeatherState } from '../../hooks/api/useForecastWeatherState';
+import { useCurrentWeatherState } from '../../hooks/useCurrentWeatherState';
+import { useForecastWeatherState } from '../../hooks/useForecastWeatherState';
 
 const Container = styled.div`
   height: 100%;
@@ -99,8 +98,8 @@ const TimelineItem: React.FC<TimelineItemProps> = memo(({ temperature, hour }) =
 
 const TodayTimeline: React.FC = memo(() => {
   const theme = useTheme();
-  const forecastWeather = useForecastWeatherState('milan');
-  const currentWeather = useCurrentWeatherState('milan');
+  const forecastWeather = useForecastWeatherState();
+  const currentWeather = useCurrentWeatherState();
   if (!forecastWeather || !currentWeather) return null;
 
   return (

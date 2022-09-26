@@ -5,7 +5,7 @@ import { Slider } from '../../../../../shared/components/molecules/Slider';
 
 import { MinimalDayWeatherCard } from '../../molecules/MinimalWeatherCard';
 
-import { useForecastWeatherState } from '../../../hooks/api/useForecastWeatherState';
+import { useForecastWeatherState } from '../../../hooks/useForecastWeatherState';
 
 const CardContainer = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ const CardContainer = styled.div`
 `;
 
 const WeekWeather: React.FC = memo(() => {
-  const forecastWeather = useForecastWeatherState('milan');
+  const forecastWeather = useForecastWeatherState();
   if (!forecastWeather) return null;
   return (
     <Slider>

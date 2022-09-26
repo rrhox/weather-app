@@ -5,7 +5,7 @@ import { MonthWeather } from './MonthWeather';
 
 import { WeekWeather } from './WeekWeather';
 
-const WeekAndMonthWeather: React.FC = memo(() => {
+const TabsWeather: React.FC = memo(() => {
   return (
     <Tabs
       data={[
@@ -22,5 +22,5 @@ const WeekAndMonthWeather: React.FC = memo(() => {
   );
 });
 
-WeekAndMonthWeather.displayName = 'WeekAndMonthWeather';
-export { WeekAndMonthWeather };
+TabsWeather.displayName = 'TabsWeather';
+export { TabsWeather };

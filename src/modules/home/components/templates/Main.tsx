@@ -1,13 +1,11 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import { Loading } from '../../../../shared/components/atoms/Loading';
-import {
-  useGetCurrentWeatherByCityQuery,
-  useGetForecastWeatherByCityQuery,
-} from '../../../../shared/store/reducers/api/openWeather';
+
+import { useGetWeatherInfoAboutCity } from '../../hooks/useGetWeatherInfoAboutCity';
 import { CurrentDayWeather } from '../organisms/CurrentDayWeather';
 import { TodayTimeline } from '../organisms/TodayTimeline';
-import { WeekAndMonthWeather } from '../organisms/weekAndMonth/WeekAndMonthWeather';
+import { TabsWeather } from '../organisms/tab/TabsWeather';
 
 const Container = styled.div`
   width: 100%;
@@ -49,35 +47,28 @@ const ContainerWeek = styled.section`
 `;
 
 const Main = memo(() => {
-  const {
-    data: currentWeather,
-    error: errorCurrentWeather,
-    isLoading: isLoadingCurrentWeather,
-  } = useGetCurrentWeatherByCityQuery('milan');
-
-  const {
-    data: forecastWeather,
-    error: errorForecastWeather,
-    isLoading: isLoadingForecastWeather,
-  } = useGetForecastWeatherByCityQuery('milan');
-
-  if (!currentWeather || errorCurrentWeather || !forecastWeather || errorForecastWeather)
-    return <div>Error: {JSON.stringify(errorCurrentWeather)}</div>;
-  if (isLoadingCurrentWeather || isLoadingForecastWeather) return <Loading />;
+  const { isLoading, isErrors } = useGetWeatherInfoAboutCity();
+  if (isLoading) return <Loading />;
 
   return (
     <Container>
-      <Header>
-        <CurrentDayWeather />
-      </Header>
-      <Body>
-        <ContainerTimeline>
-          <TodayTimeline />
-        </ContainerTimeline>
-        <ContainerWeek>
-          <WeekAndMonthWeather />
-        </ContainerWeek>
-      </Body>
+      {isErrors ? (
+        <div>Error</div>
+      ) : (
+        <>
+          <Header>
+            <CurrentDayWeather />
+          </Header>
+          <Body>
+            <ContainerTimeline>
+              <TodayTimeline />
+            </ContainerTimeline>
+            <ContainerWeek>
+              <TabsWeather />
+            </ContainerWeek>
+          </Body>
+        </>
+      )}
     </Container>
   );
 });

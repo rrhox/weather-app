@@ -6,7 +6,7 @@ import { Icon } from '../../../../shared/components/atoms/Icon';
 import { Typography } from '../../../../shared/components/atoms/Typography';
 import { BaseContainerElementProps, BaseContainerElement } from '../../../../shared/styles/BaseContainerElement';
 import { format } from 'date-fns';
-import { useCurrentWeatherState } from '../../hooks/api/useCurrentWeatherState';
+import { useCurrentWeatherState } from '../../hooks/useCurrentWeatherState';
 
 export const CurrentDayWeatherStyle = styled.div<BaseContainerElementProps & { image: string }>`
   ${BaseContainerElement};
@@ -44,8 +44,7 @@ export const Card = styled.div<BaseContainerElementProps>`
 
 export const CurrentDayWeather: React.FC = () => {
   const theme = useTheme();
-
-  const currentWeather = useCurrentWeatherState('milan');
+  const currentWeather = useCurrentWeatherState();
   if (!currentWeather) return null;
 
   return (

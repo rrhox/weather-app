@@ -16,6 +16,10 @@ const Container = styled.div`
   color: ${(props) => props.theme.typography.colors[100]};
 `;
 
+const IconBox = styled.div`
+  height: 10rem;
+`;
+
 type MinimalDayWeatherCardProps = { temperature: number; weather: IconType; day?: string };
 const MinimalDayWeatherCard: FC<MinimalDayWeatherCardProps> = memo(({ temperature, weather, day }) => {
   return (
@@ -28,9 +32,9 @@ const MinimalDayWeatherCard: FC<MinimalDayWeatherCardProps> = memo(({ temperatur
       <Typography variant="h2" weight="semibold">
         {temperature}°
       </Typography>
-      <div>
+      <IconBox>
         <Icon name={weather} />
-      </div>
+      </IconBox>
     </Container>
   );
 });

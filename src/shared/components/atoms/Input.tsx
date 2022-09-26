@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, FC, InputHTMLAttributes, memo } from 'react';
+import React, { ButtonHTMLAttributes, FC, InputHTMLAttributes, memo, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { Icon } from './Icon';
 
@@ -44,22 +44,40 @@ const Button = styled.button`
   position: absolute;
   right: 0;
   top: 0;
+  cursor: pointer;
 `;
 
-const Container = styled.div`
+const Form = styled.form`
   width: 100%;
   position: relative;
 `;
 
-type InputProps = InputHTMLAttributes<HTMLInputElement> & ButtonHTMLAttributes<HTMLButtonElement>;
-const Input: FC<InputProps> = memo(({ ...rest }) => {
+type InputProps = InputHTMLAttributes<HTMLInputElement> &
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    handleSubmit: (data: string) => void;
+  };
+const Input: FC<InputProps> = memo(({ handleSubmit, ...rest }) => {
+  const [search, setSearch] = useState<string>('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
+  const onSubmit = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      handleSubmit(search);
+    },
+    [search],
+  );
+
   return (
-    <Container>
-      <InputStyle {...rest} />
-      <Button {...rest}>
+    <Form>
+      <InputStyle {...rest} onChange={handleChange} />
+      <Button {...rest} onClick={onSubmit}>
         <Icon name="search" />
       </Button>
-    </Container>
+    </Form>
   );
 });
 
