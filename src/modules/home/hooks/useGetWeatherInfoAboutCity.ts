@@ -30,7 +30,6 @@ export const useGetWeatherInfoAboutCity = () => {
     if (errorCurrentWeather || errorForecastWeather) {
       const currentWeatherNotFound = (errorCurrentWeather as FetchBaseQueryError)?.status === 404;
       const forecastWeatherNotFound = (errorForecastWeather as FetchBaseQueryError)?.status === 404;
-
       if (currentWeatherNotFound || forecastWeatherNotFound) {
         dispatch(resetSearchCity());
         setIsError(false);
@@ -38,7 +37,7 @@ export const useGetWeatherInfoAboutCity = () => {
         setIsError(true);
       }
     }
-  }, [mainCity]);
+  }, [mainCity, errorCurrentWeather, errorForecastWeather]);
 
   return {
     data: { currentWeather, forecastWeather },
